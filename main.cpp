@@ -1,41 +1,90 @@
+
 #include <iostream>
-#include <map>
-#include <syscall.h>
-#include <fstream>
+#include <gtest/gtest.h>
+#include <benchmark/benchmark.h>
 #include "lzi_lib/src/static_selfindex_lz77.h"
+#include "utils/mem_monitor.hpp"
+
+
 using namespace lz77index;
+using namespace std::chrono;
+
+using timer = std::chrono::high_resolution_clock;
+auto buildlzEnd = [](benchmark::State &st,
+                    const string &file_collection,
+                    const string &file_index_output
+
+#ifdef MEM_MONITOR
+        ,const string &file_mem_monitor
+#endif
+                    )
+{
+
+    unsigned char br=0;
+    unsigned char bs=0;
+    unsigned char ss=0;
+
+    lz77index::static_selfindex* idx = nullptr;
+
+#ifdef MEM_MONITOR
+    mem_monitor mm(file_mem_monitor+"csv");
+#endif
+    for (auto _ : st) {
+
+#ifdef MEM_MONITOR
+        mm.event("LZEND-INDEX-BUILD");
+        sleep(5);
+#endif
+        if(idx == nullptr)
+            idx = lz77index::static_selfindex_lzend::build ((char*)file_collection.c_str(),(char*)file_index_output.c_str(), br, bs, ss);
+    }
 
 
 
-std::map<std::string,uint> collections_code = {
-        {"../../reals_collections/cere"              ,1},
-        {"../../reals_collections/coreutils"         ,2},
-        //{"../../reals_collections/einstein.de.txt"   ,3},
-        {"../../reals_collections/einstein.en.txt"   ,4},
-        {"../../reals_collections/Escherichia_Coli"  ,5},
-        {"../../reals_collections/influenza"         ,6},
-        {"../../reals_collections/kernel"            ,7},
-        {"../../reals_collections/para"              ,8},
-      //  {"../../reals_collections/world_leaders"     ,9},
+    st.counters["size"] = idx->size();
+
+    if(idx != nullptr)
+        delete idx;
 };
 
+auto buildlz77 = [](benchmark::State &st,
+        const string &file_collection,
+        const string &file_index_output
 
-std::map<std::string,std::string> collections_name = {
-        //{"../test/collection/repetitve/reals/einstein.de.txt"   ,0},
-        //{"einstein.de.txt"   ,0},
-      {"../../reals_collections/cere"            , "cere"                      },
-      {"../../reals_collections/coreutils"       , "coreutils"                 },
-      //{"../../reals_collections/einstein.de.txt" , "einstein.de.txt"           },
-      {"../../reals_collections/einstein.en.txt" , "einstein.en.txt"           },
-      {"../../reals_collections/Escherichia_Coli", "Escherichia_Coli"          },
-      {"../../reals_collections/influenza"       , "influenza"                 },
-      {"../../reals_collections/kernel"          , "kernel"                    },
-      {"../../reals_collections/para"            , "para"                      },
-     // {"../../reals_collections/world_leaders"   , "world_leaders"             }
+#ifdef MEM_MONITOR
+        ,const string &file_mem_monitor
+
+#endif
+        )
+{
+
+    unsigned char br=0;
+    unsigned char bs=0;
+    unsigned char ss=0;
+
+    lz77index::static_selfindex* idx = nullptr;
+
+#ifdef MEM_MONITOR
+    mem_monitor mm(file_mem_monitor+"csv");
+#endif
+    for (auto _ : st) {
+
+#ifdef MEM_MONITOR
+        mm.event("LZ77-INDEX-BUILD");
+        std::cout<<"MEM-MONITOR"<<std::endl;
+        sleep(5);
+#endif
+            if(idx == nullptr)
+                idx = lz77index::static_selfindex_lz77::build ((char*)file_collection.c_str(),(char*)file_index_output.c_str(), br, bs, ss);
+    }
+
+
+
+    st.counters["size"] = idx->size();
+
+    if(idx != nullptr)
+        delete idx;
 };
-
-
-
 
 
 
@@ -47,40 +96,32 @@ int main (int argc, char *argv[] ){
     }
 
     std::string collection = argv[1];//"../tests/collections/repetitive/reals/para";
-    std::cout<<collection<<std::endl;
     std::string path = argv[2];
-    std::cout<<"output directory:"<<path<<std::endl;
+
+#ifdef MEM_MONITOR
+    std::string mem_monitor = argv[3];
+#endif
 
     bool type = std::atoi(argv[3]);
 
-    unsigned char br=0;
-    unsigned char bs=0;
-    unsigned char ss=0;
 
-    std::map<std::string,uint>::iterator it_map = collections_code.begin();
 
-//    for (int i = 0; i < 7; ++i) {
-//        uint8_t code = it_map->second;
-//        std::string coll_name = collections_name[it_map->first];
-//        std::cout<<"......Working on "+ coll_name + "............\n";
-//        char * filename = (char *)it_map->first.c_str();
-//        std::string tt = "../indices/lzend-"+coll_name;
-        char * fileindex = (char *) path.c_str();
-//        lz77index::static_selfindex* idx = lz77index::static_selfindex_lzend::build(filename,fileindex, br, bs, ss);
-//        lzt77index::static_selfindex* idx  = lz77index::static_selfindex_lz77::build (filename,fileindex, br, bs, ss);
-        if(type){
-            lz77index::static_selfindex* idx  = lz77index::static_selfindex_lz77::build ((char*)collection.c_str(),fileindex, br, bs, ss);
-//        std::cout<<"\n\n......Finished "+ coll_name + "............\n\n\n";
-            delete idx;
-//        ++it_map;
-        }else{
-            lz77index::static_selfindex* idx  = lz77index::static_selfindex_lzend::build ((char*)collection.c_str(),fileindex, br, bs, ss);
-//        std::cout<<"\n\n......Finished "+ coll_name + "............\n\n\n";
-            delete idx;
-//        ++it_map;
-        }
+    if(type)
+            benchmark::RegisterBenchmark("LZ77-INDEX",  buildlz77, collection,path
+#ifdef MEM_MONITOR
+                    ,mem_monitor
+#endif
+                    );
+    else
 
-//    }
+        benchmark::RegisterBenchmark("LZEND-INDEX",  buildlzEnd, collection,path
+#ifdef MEM_MONITOR
+                ,mem_monitor
+#endif
+        );
+
+        benchmark::Initialize(&argc, argv);
+         benchmark::RunSpecifiedBenchmarks();
 
 
     return 0;

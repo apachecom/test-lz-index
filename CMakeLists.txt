@@ -149,16 +149,20 @@ set(SOURCE_FILES
         lzi_lib/src/utils_index.cpp
         lzi_lib/src/wt_node.cpp
 
+        utils/mem_monitor.hpp
+
         )
 
 
 link_directories(~/lib)
 
-
-
-
+option(USE_MEM_MONITOR "Enter mem-monitor mode" OFF)
+if (USE_MEM_MONITOR)
+    add_definitions(-DMEM_MONITOR)
+endif()
 
 add_executable(test-lz-index main.cpp ${SOURCE_FILES})
+
 #add_executable(lzi_locate locate.cpp ${SOURCE_FILES})
 #add_executable(lzi_display display.cpp ${SOURCE_FILES} bench/locate_pattern_len.cpp bench/display_pattern_len.cpp)
 
@@ -171,8 +175,19 @@ cxx_executable_with_flags(locate_pattern_len "" "${LIBS};benchmark;sdsl;cds;divs
 cxx_executable_with_flags(display_pattern_len "" "${LIBS};benchmark;sdsl;cds;divsufsort;divsufsort64;" bench/display_pattern_len.cpp ${SOURCE_FILES})
 
 
+#
+#add_definitions(-DMEM-MONITOR)
+#add_executable(test-lz-index-mem main.cpp ${SOURCE_FILES})
+target_link_libraries(test-lz-index benchmark)
 target_link_libraries(test-lz-index cds)
 target_link_libraries(test-lz-index divsufsort)
+#
+#
+#
+
+
+
+
 #target_link_libraries(lzi_locate cds)
 #target_link_libraries(lzi_locate divsufsort)
 
