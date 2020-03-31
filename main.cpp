@@ -6,6 +6,7 @@
 #include "lzi_lib/src/static_selfindex_lzend.h"
 
 #include "utils/mem_monitor.hpp"
+//#define LZEND 1
 
 
 using namespace lz77index;
@@ -43,7 +44,7 @@ auto buildlz77 = [](benchmark::State &st,
 
             if(idx == nullptr){
 #ifdef LZEND
-                idx = lz77index::static_selfindex_lzEnd::build ((char*)file_collection.c_str(),(char*)file_index_output.c_str(), br, bs, ss);
+                idx = lz77index::static_selfindex_lzend::build ((char*)file_collection.c_str(),(char*)file_index_output.c_str(), br, bs, ss);
 #else
                 idx = lz77index::static_selfindex_lz77::build ((char*)file_collection.c_str(),(char*)file_index_output.c_str(), br, bs, ss);
 #endif
