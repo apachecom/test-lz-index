@@ -1,6 +1,6 @@
 
 wget  http://pizzachili.dcc.uchile.cl/repcorpus/real/Escherichia_Coli.gz
-gunzip escherichia_coli.gz
+gunzip Escherichia_Coli.gz
 wget  http://pizzachili.dcc.uchile.cl/repcorpus/real/cere.gz
 gunzip cere.gz
 wget  http://pizzachili.dcc.uchile.cl/repcorpus/real/coreutils.gz
