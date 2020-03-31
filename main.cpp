@@ -51,6 +51,7 @@ int main (int argc, char *argv[] ){
     std::string path = argv[2];
     std::cout<<"output directory:"<<path<<std::endl;
 
+    bool type = std::atoi(argv[3]);
 
     unsigned char br=0;
     unsigned char bs=0;
@@ -66,12 +67,19 @@ int main (int argc, char *argv[] ){
 //        std::string tt = "../indices/lzend-"+coll_name;
         char * fileindex = (char *) path.c_str();
 //        lz77index::static_selfindex* idx = lz77index::static_selfindex_lzend::build(filename,fileindex, br, bs, ss);
-//        lz77index::static_selfindex* idx  = lz77index::static_selfindex_lz77::build (filename,fileindex, br, bs, ss);
-
-        lz77index::static_selfindex* idx  = lz77index::static_selfindex_lz77::build ((char*)collection.c_str(),fileindex, br, bs, ss);
+//        lzt77index::static_selfindex* idx  = lz77index::static_selfindex_lz77::build (filename,fileindex, br, bs, ss);
+        if(type){
+            lz77index::static_selfindex* idx  = lz77index::static_selfindex_lz77::build ((char*)collection.c_str(),fileindex, br, bs, ss);
 //        std::cout<<"\n\n......Finished "+ coll_name + "............\n\n\n";
-        delete idx;
+            delete idx;
 //        ++it_map;
+        }else{
+            lz77index::static_selfindex* idx  = lz77index::static_selfindex_lzend::build ((char*)collection.c_str(),fileindex, br, bs, ss);
+//        std::cout<<"\n\n......Finished "+ coll_name + "............\n\n\n";
+            delete idx;
+//        ++it_map;
+        }
+
 //    }
 
 

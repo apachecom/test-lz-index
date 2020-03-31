@@ -20,6 +20,8 @@
 #include <fstream>
 #include <chrono>
 #include "../lzi_lib/src/static_selfindex.h"
+#include <unistd.h>
+
 
 #define  MAX_Q 1e3
 #define MAX_OCC 1e7
