@@ -4,13 +4,13 @@ cmake -DCMAKE_BUILD_TYPE=Release -DUSE_MEM_MONITOR=OFF ..
 make test-lz-index
 
 #build lz77
-./test-lz-index /d1/apacheco/collections/Escherichia_Coli  /d1/apacheco/indices/lz77/lz77-Escherichia_Coli 1 --benchmark_out=/d1/apacheco/results/lz77/lz77-build-Escherichia_Coli.csv       --benchmark_out_format=csv
-#./test-lz-index /d1/apacheco/collections/cere  /d1/apacheco/indices/lz77-cere 1 --benchmark_out=/d1/apacheco/results/lz77/lz77-build-cere.csv       --benchmark_out_format=csv
-#./test-lz-index /d1/apacheco/collections/coreutils  /d1/apacheco/indices/lz77-coreutils 1 --benchmark_out=/d1/apacheco/results/lz77/lz77-build-coreutils.csv       --benchmark_out_format=csv
-#./test-lz-index /d1/apacheco/collections/einstein.en.txt  /d1/apacheco/indices/lz77-einstein.en.txt 1 --benchmark_out=/d1/apacheco/results/lz77/lz77-build-einstein.en.txt.csv       --benchmark_out_format=csv
-#./test-lz-index /d1/apacheco/collections/influenza  /d1/apacheco/indices/lz77-influenza 1 --benchmark_out=/d1/apacheco/results/lz77/lz77-build-influenza.csv       --benchmark_out_format=csv
-#./test-lz-index /d1/apacheco/collections/kernel  /d1/apacheco/indices/lz77-kernel 1 --benchmark_out=/d1/apacheco/results/lz77/lz77-build-kernel.csv       --benchmark_out_format=csv
-#./test-lz-index /d1/apacheco/collections/para  /d1/apacheco/indices/lz77-para 1 --benchmark_out=/d1/apacheco/results/lz77/lz77-build-para.csv       --benchmark_out_format=csv
+./test-lz-index /d1/apacheco/collections/Escherichia_Coli  /d1/apacheco/indices/lz77/lz77-Escherichia_Coli  --benchmark_out=/d1/apacheco/results/lz77/lz77-build-Escherichia_Coli.csv       --benchmark_out_format=csv
+#./test-lz-index /d1/apacheco/collections/cere  /d1/apacheco/indices/lz77-cere  --benchmark_out=/d1/apacheco/results/lz77/lz77-build-cere.csv       --benchmark_out_format=csv
+#./test-lz-index /d1/apacheco/collections/coreutils  /d1/apacheco/indices/lz77-coreutils  --benchmark_out=/d1/apacheco/results/lz77/lz77-build-coreutils.csv       --benchmark_out_format=csv
+#./test-lz-index /d1/apacheco/collections/einstein.en.txt  /d1/apacheco/indices/lz77-einstein.en.txt  --benchmark_out=/d1/apacheco/results/lz77/lz77-build-einstein.en.txt.csv       --benchmark_out_format=csv
+#./test-lz-index /d1/apacheco/collections/influenza  /d1/apacheco/indices/lz77-influenza  --benchmark_out=/d1/apacheco/results/lz77/lz77-build-influenza.csv       --benchmark_out_format=csv
+#./test-lz-index /d1/apacheco/collections/kernel  /d1/apacheco/indices/lz77-kernel  --benchmark_out=/d1/apacheco/results/lz77/lz77-build-kernel.csv       --benchmark_out_format=csv
+#./test-lz-index /d1/apacheco/collections/para  /d1/apacheco/indices/lz77-para  --benchmark_out=/d1/apacheco/results/lz77/lz77-build-para.csv       --benchmark_out_format=csv
 
 
 
@@ -18,14 +18,38 @@ cmake -DCMAKE_BUILD_TYPE=Release -DUSE_MEM_MONITOR=ON ..
 make test-lz-index
 
 #build lz77
-./test-lz-index /d1/apacheco/collections/Escherichia_Coli  /d1/apacheco/indices/lz77/lz77-Escherichia_Coli /d1/apacheco/results/lz77/lz77-build-Escherichia_Coli  1
-#./test-lz-index /d1/apacheco/collections/cere  /d1/apacheco/indices/lz77-cere /d1/apacheco/results/lz77/lz77-build-cere  1
-#./test-lz-index /d1/apacheco/collections/coreutils  /d1/apacheco/indices/lz77-coreutils /d1/apacheco/results/lz77/lz77-build-coreutils  1
-#./test-lz-index /d1/apacheco/collections/einstein.en.txt  /d1/apacheco/indices/lz77-einstein.en.txt /d1/apacheco/results/lz77/lz77-build-einstein.en.txt  1
-#./test-lz-index /d1/apacheco/collections/influenza  /d1/apacheco/indices/lz77-influenza /d1/apacheco/results/lz77/lz77-build-influenza  1
-#./test-lz-index /d1/apacheco/collections/kernel  /d1/apacheco/indices/lz77-ker/d1/apacheco/results/lz77/lz77-build-paranel /d1/apacheco/results/lz77/lz77-build-kernel  1
-#./test-lz-index /d1/apacheco/collections/para  /d1/apacheco/indices/lz77-para   1
+./test-lz-index /d1/apacheco/collections/Escherichia_Coli  /d1/apacheco/indices/lz77/lz77-Escherichia_Coli /d1/apacheco/results/lz77/lz77-build-Escherichia_Coli
+#./test-lz-index /d1/apacheco/collections/cere  /d1/apacheco/indices/lz77-cere /d1/apacheco/results/lz77/lz77-build-cere
+#./test-lz-index /d1/apacheco/collections/coreutils  /d1/apacheco/indices/lz77-coreutils /d1/apacheco/results/lz77/lz77-build-coreutils
+#./test-lz-index /d1/apacheco/collections/einstein.en.txt  /d1/apacheco/indices/lz77-einstein.en.txt /d1/apacheco/results/lz77/lz77-build-einstein.en.txt
+#./test-lz-index /d1/apacheco/collections/influenza  /d1/apacheco/indices/lz77-influenza /d1/apacheco/results/lz77/lz77-build-influenza
+#./test-lz-index /d1/apacheco/collections/kernel  /d1/apacheco/indices/lz77-ker/d1/apacheco/results/lz77/lz77-build-paranel /d1/apacheco/results/lz77/lz77-build-kernel
+#./test-lz-index /d1/apacheco/collections/para  /d1/apacheco/indices/lz77-para
 
 
-cmake -DCMAKE_BUILD_TYPE=Release -DUSE_MEM_MONITOR=OFF ..
+cmake -DCMAKE_BUILD_TYPE=Release -DUSE_MEM_MONITOR=OFF -DUSE_LZEND=ON ..
 make test-lz-index
+
+#build lzEND
+
+./test-lz-index /d1/apacheco/collections/Escherichia_Coli  /d1/apacheco/indices/lz77/lzEnd-Escherichia_Coli  --benchmark_out=/d1/apacheco/results/lz77/lzEnd-build-Escherichia_Coli.csv       --benchmark_out_format=csv
+#./test-lz-index /d1/apacheco/collections/cere  /d1/apacheco/indices/lzEnd-cere  --benchmark_out=/d1/apacheco/results/lz77/lzEnd-build-cere.csv       --benchmark_out_format=csv
+#./test-lz-index /d1/apacheco/collections/coreutils  /d1/apacheco/indices/lzEnd-coreutils  --benchmark_out=/d1/apacheco/results/lz77/lzEnd-build-coreutils.csv       --benchmark_out_format=csv
+#./test-lz-index /d1/apacheco/collections/einstein.en.txt  /d1/apacheco/indices/lzEnd-einstein.en.txt  --benchmark_out=/d1/apacheco/results/lz77/lzEnd-build-einstein.en.txt.csv       --benchmark_out_format=csv
+#./test-lz-index /d1/apacheco/collections/influenza  /d1/apacheco/indices/lzEnd-influenza  --benchmark_out=/d1/apacheco/results/lz77/lzEnd-build-influenza.csv       --benchmark_out_format=csv
+#./test-lz-index /d1/apacheco/collections/kernel  /d1/apacheco/indices/lzEnd-kernel  --benchmark_out=/d1/apacheco/results/lz77/lz77-lzEnd-kernel.csv       --benchmark_out_format=csv
+#./test-lz-index /d1/apacheco/collections/para  /d1/apacheco/indices/lzEnd-para  --benchmark_out=/d1/apacheco/results/lz77/lzEnd-build-para.csv       --benchmark_out_format=csv
+
+
+cmake -DCMAKE_BUILD_TYPE=Release -DUSE_MEM_MONITOR=ON -DUSE_LZEND=ON..
+make test-lz-index
+
+#build lzEND
+
+./test-lz-index /d1/apacheco/collections/Escherichia_Coli  /d1/apacheco/indices/lz77/lzEnd-Escherichia_Coli
+#./test-lz-index /d1/apacheco/collections/cere  /d1/apacheco/indices/lzEnd-cere
+#./test-lz-index /d1/apacheco/collections/coreutils  /d1/apacheco/indices/lzEnd-coreutils
+#./test-lz-index /d1/apacheco/collections/einstein.en.txt  /d1/apacheco/indices/lzEnd-einstein.en.txt
+#./test-lz-index /d1/apacheco/collections/influenza  /d1/apacheco/indices/lzEnd-influenza
+#./test-lz-index /d1/apacheco/collections/kernel  /d1/apacheco/indices/lzEnd-kernel
+#./test-lz-index /d1/apacheco/collections/para  /d1/apacheco/indices/lzEnd-para  

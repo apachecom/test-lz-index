@@ -157,8 +157,14 @@ set(SOURCE_FILES
 link_directories(~/lib)
 
 option(USE_MEM_MONITOR "Enter mem-monitor mode" OFF)
+option(USE_LZEND "Enter mem-monitor mode" OFF)
+
 if (USE_MEM_MONITOR)
     add_definitions(-DMEM_MONITOR)
+endif()
+
+if (USE_LZEND)
+    add_definitions(-DLZEND)
 endif()
 
 add_executable(test-lz-index main.cpp ${SOURCE_FILES})
