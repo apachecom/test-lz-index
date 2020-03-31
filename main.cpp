@@ -3,6 +3,8 @@
 #include <gtest/gtest.h>
 #include <benchmark/benchmark.h>
 #include "lzi_lib/src/static_selfindex_lz77.h"
+#include "lzi_lib/src/static_selfindex_lzend.h"
+
 #include "utils/mem_monitor.hpp"
 
 
