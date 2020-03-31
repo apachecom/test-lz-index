@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.12)
-project(lzi_rlcsa)
+project(test-lz-index)
 
 set(CMAKE_CXX_STANDARD 14)
 
@@ -58,6 +58,7 @@ endif ()
 include(ConfigGBench)
 
 
+include_directories(~/include)
 
 
 
@@ -151,11 +152,15 @@ set(SOURCE_FILES
         )
 
 
+link_directories(~/lib)
 
 
-add_executable(lzi_rlcsa main.cpp ${SOURCE_FILES})
-add_executable(lzi_locate locate.cpp ${SOURCE_FILES})
-add_executable(lzi_display display.cpp ${SOURCE_FILES} bench/locate_pattern_len.cpp bench/display_pattern_len.cpp)
+
+
+
+add_executable(test-lz-index main.cpp ${SOURCE_FILES})
+#add_executable(lzi_locate locate.cpp ${SOURCE_FILES})
+#add_executable(lzi_display display.cpp ${SOURCE_FILES} bench/locate_pattern_len.cpp bench/display_pattern_len.cpp)
 
 
 include(internal_utils)
@@ -166,13 +171,14 @@ cxx_executable_with_flags(locate_pattern_len "" "${LIBS};benchmark;sdsl;cds;divs
 cxx_executable_with_flags(display_pattern_len "" "${LIBS};benchmark;sdsl;cds;divsufsort;divsufsort64;" bench/display_pattern_len.cpp ${SOURCE_FILES})
 
 
-target_link_libraries(lzi_rlcsa cds)
-target_link_libraries(lzi_rlcsa divsufsort)
-target_link_libraries(lzi_locate cds)
-target_link_libraries(lzi_locate divsufsort)
+target_link_libraries(test-lz-index cds)
+target_link_libraries(test-lz-index divsufsort)
+#target_link_libraries(lzi_locate cds)
+#target_link_libraries(lzi_locate divsufsort)
 
 
-target_link_libraries(lzi_display cds)
-target_link_libraries(lzi_display divsufsort)
+#target_link_libraries(lzi_display cds)
+#target_link_libraries(lzi_display divsufsort)
 
 #target_link_libraries(lzi_rlcsa divsufsort64)
+

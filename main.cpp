@@ -37,28 +37,43 @@ std::map<std::string,std::string> collections_name = {
 
 
 
-int main() {
+
+
+int main (int argc, char *argv[] ){
+
+    if(argc < 1){
+        std::cout<<"bad parameters....";
+        return 0;
+    }
+
+    std::string collection = argv[1];//"../tests/collections/repetitive/reals/para";
+    std::cout<<collection<<std::endl;
+    std::string path = argv[2];
+    std::cout<<"output directory:"<<path<<std::endl;
+
 
     unsigned char br=0;
     unsigned char bs=0;
     unsigned char ss=0;
 
     std::map<std::string,uint>::iterator it_map = collections_code.begin();
-    for (int i = 0; i < 7; ++i) {
 
-        uint8_t code = it_map->second;
-        std::string coll_name = collections_name[it_map->first];
-        std::cout<<"......Working on "+ coll_name + "............\n";
-        char * filename = (char *)it_map->first.c_str();
-        std::string tt = "../indices/lzend-"+coll_name;
-        char * fileindex = (char *) tt.c_str();
-        lz77index::static_selfindex* idx = lz77index::static_selfindex_lzend::build(filename,fileindex, br, bs, ss);
-        //lz77index::static_selfindex* idx  = lz77index::static_selfindex_lz77::build (filename,fileindex, br, bs, ss);
-        std::cout<<"\n\n......Finished "+ coll_name + "............\n\n\n";
+//    for (int i = 0; i < 7; ++i) {
+//        uint8_t code = it_map->second;
+//        std::string coll_name = collections_name[it_map->first];
+//        std::cout<<"......Working on "+ coll_name + "............\n";
+//        char * filename = (char *)it_map->first.c_str();
+//        std::string tt = "../indices/lzend-"+coll_name;
+        char * fileindex = (char *) path.c_str();
+//        lz77index::static_selfindex* idx = lz77index::static_selfindex_lzend::build(filename,fileindex, br, bs, ss);
+//        lz77index::static_selfindex* idx  = lz77index::static_selfindex_lz77::build (filename,fileindex, br, bs, ss);
 
+        lz77index::static_selfindex* idx  = lz77index::static_selfindex_lz77::build ((char*)collection.c_str(),fileindex, br, bs, ss);
+//        std::cout<<"\n\n......Finished "+ coll_name + "............\n\n\n";
         delete idx;
-        ++it_map;
+//        ++it_map;
+//    }
 
-    }
+
     return 0;
 }
