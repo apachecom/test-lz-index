@@ -32,7 +32,7 @@ auto buildlz77 = [](benchmark::State &st,
     lz77index::static_selfindex* idx = nullptr;
 
 #ifdef MEM_MONITOR
-    mem_monitor mm(file_mem_monitor+"csv");
+    mem_monitor mm(file_mem_monitor+".csv");
 #endif
     for (auto _ : st) {
 
@@ -50,8 +50,6 @@ auto buildlz77 = [](benchmark::State &st,
 #endif
             }
     }
-
-
 
     st.counters["size"] = idx->size();
 
