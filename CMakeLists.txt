@@ -157,13 +157,13 @@ set(SOURCE_FILES
 link_directories(~/lib)
 
 option(USE_MEM_MONITOR "Enter mem-monitor mode" OFF)
-option(USE_LZEND "Enter mem-monitor mode" OFF)
+option(USE_LZEND "using lz parsing" OFF)
 
-if (USE_MEM_MONITOR)
+if (USE_MEM_MONITOR STREQUAL ON)
     add_definitions(-DMEM_MONITOR)
 endif()
 
-if (USE_LZEND)
+if (USE_LZEND STREQUAL ON)
     add_definitions(-DLZEND)
 endif()
 
