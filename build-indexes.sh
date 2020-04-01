@@ -1,6 +1,6 @@
 cd cmake-build-release
 
-cmake -DCMAKE_BUILD_TYPE=Release -DUSE_MEM_MONITOR=OFF ..
+cmake -DCMAKE_BUILD_TYPE=Release -DUSE_MEM_MONITOR=OFF  -DUSE_LZEND=OFF..
 make test-lz-index
 
 #build lz77
@@ -14,7 +14,7 @@ make test-lz-index
 
 
 
-cmake -DCMAKE_BUILD_TYPE=Release -DUSE_MEM_MONITOR=ON ..
+cmake -DCMAKE_BUILD_TYPE=Release -DUSE_MEM_MONITOR=ON -DUSE_LZEND=OFF ..
 make test-lz-index
 
 #build lz77
