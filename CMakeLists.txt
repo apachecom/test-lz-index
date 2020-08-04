@@ -19,6 +19,7 @@ include(CTest)
 
 find_package(Threads REQUIRED)
 find_package(GTest)
+
 if (GTEST_FOUND)
     set(LIBS ${LIBS} GTest::Main)
 else ()
@@ -57,10 +58,7 @@ endif ()
 
 include(ConfigGBench)
 
-
 include_directories(~/include)
-
-
 
 set(SOURCE_FILES
 
@@ -177,8 +175,8 @@ include(internal_utils)
 
 cxx_executable_with_flags(display "" "${LIBS};benchmark;sdsl;cds;divsufsort;divsufsort64;" bench/display.cpp ${SOURCE_FILES})
 cxx_executable_with_flags(locate "" "${LIBS};benchmark;sdsl;cds;divsufsort;divsufsort64;" bench/locate.cpp ${SOURCE_FILES})
-cxx_executable_with_flags(locate_pattern_len "" "${LIBS};benchmark;sdsl;cds;divsufsort;divsufsort64;" bench/locate_pattern_len.cpp ${SOURCE_FILES})
-cxx_executable_with_flags(display_pattern_len "" "${LIBS};benchmark;sdsl;cds;divsufsort;divsufsort64;" bench/display_pattern_len.cpp ${SOURCE_FILES})
+cxx_executable_with_flags(locate_pattern_len "" "${LIBS};benchmark;sdsl;cds;divsufsort;divsufsort64;" bench/bench_locate.cpp ${SOURCE_FILES})
+cxx_executable_with_flags(display_pattern_len "" "${LIBS};benchmark;sdsl;cds;divsufsort;divsufsort64;" bench/bench_display.cpp ${SOURCE_FILES})
 
 
 #
@@ -187,6 +185,7 @@ cxx_executable_with_flags(display_pattern_len "" "${LIBS};benchmark;sdsl;cds;div
 target_link_libraries(test-lz-index benchmark)
 target_link_libraries(test-lz-index cds)
 target_link_libraries(test-lz-index divsufsort)
+target_link_libraries(test-lz-index divsufsort64)
 #
 #
 #
